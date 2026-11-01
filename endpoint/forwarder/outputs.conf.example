@@ -1,0 +1,6 @@
+# Replace with the reachable Splunk Enterprise receiver address.
+[tcpout]
+defaultGroup = splunk_lab
+
+[tcpout:splunk_lab]
+server = <SPLUNK_RECEIVER_IP>:9997
