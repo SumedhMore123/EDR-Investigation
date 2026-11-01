@@ -1,0 +1,13 @@
+// Manual hunt: network connections initiated by common script hosts.
+// Review destination context; a connection alone is not proof of command and control.
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where InitiatingProcessFileName in~ ("powershell.exe", "pwsh.exe",
+                                       "wscript.exe", "cscript.exe",
+                                       "mshta.exe", "rundll32.exe")
+| where RemoteIPType == "Public" or isnotempty(RemoteUrl)
+| project Timestamp, DeviceId, DeviceName, ReportId, ActionType,
+          InitiatingProcessAccountName, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, RemoteIPType, RemoteIP,
+          RemotePort, RemoteUrl, Protocol
+| order by Timestamp desc
