@@ -8,4 +8,4 @@ Suggested areas:
 - Policy changes and audit log clearing.
 - Object access only where a specific scenario requires it.
 
-Audit policy names and command syntax can vary by Windows edition and policy management method. Document the exact settings used in the tested VM.
+Audit policy names and syntax can vary by Windows edition and policy management method. Document the exact settings used in the tested VM.
