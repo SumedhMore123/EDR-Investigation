@@ -2,4 +2,4 @@
 homePath   = $SPLUNK_DB/soclab/db
 coldPath   = $SPLUNK_DB/soclab/colddb
 thawedPath = $SPLUNK_DB/soclab/thaweddb
-# Set retention and sizing according to the lab host's storage capacity.
+# Set retention and sizing according to lab storage capacity.
