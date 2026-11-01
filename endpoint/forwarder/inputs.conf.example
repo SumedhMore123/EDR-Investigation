@@ -8,8 +8,8 @@ disabled = 0
 index = soclab
 renderXml = true
 
-# Enable Security channel only after configuring the required audit policy
-# and understanding the event volume and data sensitivity.
+# Enable Security channel only after configuring required audit policy
+# and understanding event volume and data sensitivity.
 # [WinEventLog://Security]
 # disabled = 0
 # index = soclab
