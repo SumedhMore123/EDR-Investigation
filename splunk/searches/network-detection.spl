@@ -1,0 +1,5 @@
+index=soclab EventCode=3
+| stats count earliest(_time) as first_seen latest(_time) as last_seen values(DestinationPort) as dst_ports by host Image DestinationIp
+| where count >= 5
+| convert ctime(first_seen) ctime(last_seen)
+| sort - count
