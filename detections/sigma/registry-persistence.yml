@@ -1,0 +1,23 @@
+title: Run Key Registry Modification
+id: 9d4b5f49-2e3f-4f50-a954-a59b0b018002
+status: experimental
+description: Identifies modifications to common Run and RunOnce autorun locations. Validate event mapping and tune expected software activity.
+references:
+  - https://attack.mitre.org/techniques/T1547/001/
+author: EDR Investigation Lab
+date: 2026/11/02
+tags:
+  - attack.persistence
+  - attack.t1547.001
+logsource:
+  product: windows
+  category: registry_event
+detection:
+  selection:
+    TargetObject|contains:
+      - '\Software\Microsoft\Windows\CurrentVersion\Run'
+      - '\Software\Microsoft\Windows\CurrentVersion\RunOnce'
+  condition: selection
+falsepositives:
+  - Legitimate installers and endpoint management tools
+level: medium
