@@ -1,3 +1,0 @@
-index=soclab EventCode=1
-| table _time host User Image ParentImage CommandLine ProcessGuid ParentProcessGuid
-| sort - _time
