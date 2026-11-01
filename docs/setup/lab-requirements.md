@@ -1,11 +1,32 @@
 # Lab Requirements
 
-## Minimum topology
-- One Windows 10/11 VM for endpoint telemetry and simulation.
-- One Ubuntu VM running Splunk Enterprise, or an existing Splunk Enterprise lab instance.
-- Splunk Universal Forwarder installed on Windows.
-- Host-only or isolated lab network with endpoint-to-Splunk connectivity.
+## Required tenant and access
 
-Allocate CPU, memory and disk based on available host resources. Keep the VM count minimal for the MVP. Take clean snapshots before installing telemetry tools and before each simulation series.
+- A Microsoft Defender for Endpoint Plan 2 trial or another tenant license that explicitly includes the Plan 2 capabilities used in this project.
+- Access to the Microsoft Defender portal at https://security.microsoft.com.
+- An account with the minimum required permissions to onboard the endpoint, view device inventory, run Advanced Hunting queries, and perform the selected response actions.
+- Confirm the actual trial expiration date and enabled capabilities in the Microsoft 365 admin center before starting the lab.
 
-Use synthetic accounts and test data. Never execute adversary simulations on personal or production endpoints. Verify cleanup steps and revert snapshots when needed.
+## Endpoint
+
+- One dedicated Windows 11 VM is recommended for the initial project.
+- Keep the VM separate from personal, college, employer, and production systems.
+- Apply Windows updates and create a non-production local test account.
+- Maintain internet connectivity to Microsoft's required Defender service endpoints.
+- Take a clean VM snapshot before onboarding and before each simulation series.
+
+## Host resources
+
+Allocate CPU, memory, and disk according to the host's available capacity. A single Windows endpoint is enough for the MVP; do not add a SIEM VM or extra infrastructure to this EDR-only design.
+
+## Tools
+
+- Microsoft Defender portal
+- Microsoft Defender for Endpoint endpoint sensor
+- Advanced Hunting (KQL)
+- PowerShell for local health checks
+- Optional Atomic Red Team tests after reviewing their prerequisites and cleanup steps
+
+## Data handling
+
+Use synthetic accounts and test data. Never upload tenant onboarding scripts, API keys, passwords, real user data, raw sensitive event exports, or unredacted screenshots to GitHub.
