@@ -1,10 +1,15 @@
 # MITRE ATT&CK Mapping
 
-| Behaviour | ATT&CK technique | Evidence source | Notes |
+| Behaviour | ATT&CK technique | MDE evidence source | Investigation notes |
 |---|---|---|---|
-| PowerShell execution | T1059.001 | Sysmon Event 1 / PowerShell logs | Encoded command is an indicator, not proof |
-| Registry Run key persistence | T1547.001 | Sysmon Events 12–14 | Validate exact path and process context |
-| Suspicious Office child process | T1059 | Sysmon Event 1 | Parent-child relationship requires field normalization |
-| LSASS process access | T1003.001 (investigation context) | Sysmon Event 10 | Process access alone does not prove credential dumping |
+| PowerShell execution | T1059.001 — PowerShell | DeviceProcessEvents | Encoded or obfuscated command indicators require contextual review; legitimate administration is common. |
+| Office application starts a script interpreter | T1059 — Command and Scripting Interpreter | DeviceProcessEvents | Verify the parent/child process relationship and business context. |
+| Run / RunOnce autorun registry modification | T1547.001 — Registry Run Keys / Startup Folder | DeviceRegistryEvents | Verify key, value data, initiating process, signer, and whether the change is expected. |
+| Script interpreter makes an unusual network connection | Context-dependent; assess T1071 only when application-layer command and control is supported by evidence | DeviceNetworkEvents | A network connection alone does not establish command and control. Review destination, process, URL, timing, and surrounding events. |
 
-Re-check technique identifiers against the current ATT&CK knowledge base before final publication.
+## Mapping rules
+
+- Map only behaviour supported by collected evidence.
+- Do not infer a technique from a process name alone.
+- Treat command-line indicators as leads, not verdicts.
+- Re-check technique names and identifiers against the current MITRE ATT&CK knowledge base before final publication.
