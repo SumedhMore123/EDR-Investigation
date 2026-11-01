@@ -1,0 +1,11 @@
+// Manual hunt: script interpreters started by common Office applications.
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName in~ ("powershell.exe", "pwsh.exe", "cmd.exe",
+                      "wscript.exe", "cscript.exe", "mshta.exe")
+| where InitiatingProcessFileName in~ ("winword.exe", "excel.exe",
+                                       "powerpnt.exe", "outlook.exe")
+| project Timestamp, DeviceId, DeviceName, ReportId, AccountName,
+          FileName, ProcessCommandLine, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, SHA1
+| order by Timestamp desc
