@@ -1,0 +1,11 @@
+// Manual hunt: modifications to common Windows Run / RunOnce locations.
+DeviceRegistryEvents
+| where Timestamp > ago(7d)
+| extend Key = tolower(RegistryKey)
+| where Key contains "\\software\\microsoft\\windows\\currentversion\\run"
+    or Key contains "\\software\\microsoft\\windows\\currentversion\\runonce"
+| project Timestamp, DeviceId, DeviceName, ReportId, ActionType,
+          RegistryKey, RegistryValueName, RegistryValueData,
+          InitiatingProcessAccountName, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, InitiatingProcessSHA1
+| order by Timestamp desc
