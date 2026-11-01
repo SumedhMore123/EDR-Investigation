@@ -1,0 +1,4 @@
+index=soclab (EventCode=12 OR EventCode=13 OR EventCode=14)
+| where match(lower(TargetObject),"\\\\run(\\\\|$)") OR match(lower(TargetObject),"\\\\runonce(\\\\|$)")
+| table _time host User EventCode Image TargetObject Details
+| sort - _time
