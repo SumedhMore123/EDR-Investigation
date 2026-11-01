@@ -1,0 +1,14 @@
+// Manual hunt: PowerShell command-line indicators.
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName in~ ("powershell.exe", "pwsh.exe")
+| extend Cmd = tolower(ProcessCommandLine)
+| where Cmd contains "-enc"
+    or Cmd contains "-encodedcommand"
+    or Cmd contains "frombase64string"
+    or Cmd contains "downloadstring"
+    or Cmd contains "invoke-expression"
+| project Timestamp, DeviceId, DeviceName, ReportId, AccountName,
+          FileName, ProcessCommandLine, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, SHA1
+| order by Timestamp desc
