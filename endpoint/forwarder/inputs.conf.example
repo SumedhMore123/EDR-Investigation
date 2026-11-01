@@ -1,0 +1,16 @@
+[WinEventLog://Microsoft-Windows-Sysmon/Operational]
+disabled = 0
+index = soclab
+renderXml = true
+
+[WinEventLog://Microsoft-Windows-PowerShell/Operational]
+disabled = 0
+index = soclab
+renderXml = true
+
+# Enable Security channel only after configuring the required audit policy
+# and understanding the event volume and data sensitivity.
+# [WinEventLog://Security]
+# disabled = 0
+# index = soclab
+# whitelist = 4688,4624,4625,1102
