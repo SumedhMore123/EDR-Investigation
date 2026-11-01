@@ -1,13 +1,16 @@
 # Windows Endpoint Setup
 
-1. Create a Windows 10/11 lab VM.
-2. Apply updates and create a non-production test account.
-3. Configure an isolated/host-only network where possible.
-4. Install Sysmon from the official Microsoft Sysinternals distribution.
-5. Apply the reviewed project XML in `endpoint/sysmon/sysmon-config.xml`.
-6. Verify events in Event Viewer under **Applications and Services Logs → Microsoft → Windows → Sysmon → Operational**.
-7. Enable only the audit and PowerShell logging required by the lab.
-8. Install Splunk Universal Forwarder and configure local copies of the example inputs/outputs.
-9. Confirm forwarding and validate incoming events in Splunk.
+This guide covers the lab endpoint only. Complete the tenant and trial prerequisites in [Microsoft Defender for Endpoint setup](microsoft-defender-for-endpoint-setup.md) first.
 
-Do not commit real machine hostnames, credentials or environment-specific local configuration.
+1. Create a dedicated Windows 11 VM and take a clean snapshot.
+2. Apply updates and create a non-production test account.
+3. Confirm the endpoint can reach Microsoft's Defender cloud service endpoints.
+4. In the Defender portal, open System > Settings > Endpoints > Device management > Onboarding.
+5. Select the Windows operating system and choose the Local script method for a single lab endpoint, where available.
+6. Download the onboarding package generated for your tenant. Keep this package private; it is tenant-specific and must never be committed to Git.
+7. Follow the exact instructions in the downloaded Microsoft package and run the onboarding script with the required administrator privileges.
+8. Open Assets > Devices (or Device inventory, depending on portal navigation) and confirm that the endpoint appears.
+9. Run the local checks in scripts/powershell/health-check.ps1 and confirm the endpoint sensor service is present.
+10. Run a basic Advanced Hunting query from detections/kql/README.md and confirm recent telemetry from the lab VM is returned.
+
+Do not manually modify sensor files, repackage the onboarding package, or disable Microsoft Defender protections to force onboarding. If the device does not appear, troubleshoot licensing, prerequisites, service connectivity, and onboarding status using Microsoft's documentation.
