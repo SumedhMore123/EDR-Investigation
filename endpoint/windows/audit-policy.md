@@ -1,11 +1,11 @@
-# Windows Audit Policy
+# Optional Windows Audit Policy
 
-Enable only the audit subcategories required for project scenarios. Record policy state and validate expected Security events.
+Microsoft Defender for Endpoint is the primary telemetry and detection platform for this project. Additional Windows audit policy is optional and should be enabled only when a documented investigation requirement is not met by the MDE telemetry available in the tenant.
 
-Suggested areas:
-- Process creation auditing (include command line where appropriate).
+Potential supplemental areas:
+- Process creation auditing, including command-line capture where appropriate.
 - Logon and account logon events.
 - Policy changes and audit log clearing.
-- Object access only where a specific scenario requires it.
+- Object access only when a specific scenario requires it.
 
-Audit policy names and syntax can vary by Windows edition and policy management method. Document the exact settings used in the tested VM.
+Before changing policy, record the baseline and expected evidence. Audit policy names and syntax vary by Windows edition and management method. Keep exports protected because Security logs can contain sensitive identifiers. This is not a replacement for MDE onboarding.
