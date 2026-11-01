@@ -1,0 +1,5 @@
+index=soclab EventCode=1 (Image="*\\powershell.exe" OR Image="*\\pwsh.exe")
+| eval cmd=lower(CommandLine)
+| where like(cmd,"% -enc %") OR like(cmd,"% -encodedcommand %") OR like(cmd,"%frombase64string%")
+| table _time host User ParentImage Image CommandLine ProcessGuid
+| sort - _time
